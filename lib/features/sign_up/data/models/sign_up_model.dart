@@ -4,7 +4,7 @@ import 'package:route_e_commerce/features/sign_up/domain/entities/sign_up_entity
 
 class SignUpModel extends SignUpEntity {
   SignUpModel({
-    super.message,
+    this.message,
     super.user,
     super.token,
   });
@@ -14,6 +14,8 @@ class SignUpModel extends SignUpEntity {
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     token = json['token'];
   }
+
+  String? message;
 }
 
 class User extends UserEntity {

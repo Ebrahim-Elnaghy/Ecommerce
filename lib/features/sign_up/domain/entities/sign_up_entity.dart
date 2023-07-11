@@ -4,17 +4,15 @@ import 'package:equatable/equatable.dart';
 
 class SignUpEntity extends Equatable {
   SignUpEntity({
-    this.message,
     this.user,
     this.token,
   });
 
-  String? message;
   UserEntity? user;
   String? token;
 
   @override
-  List<Object?> get props => [message, user, token];
+  List<Object?> get props => [user, token];
 }
 
 class UserEntity extends Equatable {

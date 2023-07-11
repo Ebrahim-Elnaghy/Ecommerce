@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DefaultButton extends StatelessWidget {
@@ -12,14 +11,14 @@ class DefaultButton extends StatelessWidget {
   final Function function;
   final String text;
 
-   const DefaultButton({
+  const DefaultButton({
     super.key,
     this.width = double.infinity,
     this.height = 40,
     this.background = Colors.blue,
-     this.textStyle= const TextStyle(
-       color: Colors.white,
-     ),
+    this.textStyle = const TextStyle(
+      color: Colors.white,
+    ),
     this.isUpperCase = true,
     this.radius = 3.0,
     required this.function,
@@ -28,22 +27,16 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius),
-          color: background,
-        ),
-        child: MaterialButton(
-          onPressed: function as void Function()?,
-          child: Text(
-            isUpperCase ? text.toUpperCase() : text,
-            style: textStyle
-          ),
-        ),
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        color: background,
+      ),
+      child: MaterialButton(
+        onPressed: function as void Function()?,
+        child: Text(isUpperCase ? text.toUpperCase() : text, style: textStyle),
       ),
     );
   }
@@ -52,10 +45,14 @@ class DefaultButton extends StatelessWidget {
 class DefaultTextButton extends StatelessWidget {
   final Function function;
   final String text;
+  final TextStyle textStyle;
 
   const DefaultTextButton({
     super.key,
     required this.function,
+    this.textStyle = const TextStyle(
+      color: Colors.white,
+    ),
     required this.text,
   });
 
@@ -63,8 +60,13 @@ class DefaultTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: function as void Function()?,
+      style: TextButton.styleFrom(
+        minimumSize: Size.zero,
+        padding: EdgeInsets.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
       child: Text(
-        text.toUpperCase(),
+        text,
+        style: textStyle,
       ),
     );
   }
@@ -100,34 +102,31 @@ class DefaultFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: TextFormField(
-        controller: controller,
-        keyboardType: type,
-        obscureText: isPassword,
-        enabled: isClickable,
-        onFieldSubmitted: onSubmit,
-        onChanged: onChange,
-        onTap: onTap,
-        validator: validate,
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-          hintText: label,
-          suffixIcon: suffix != null
-              ? IconButton(
-                  onPressed: suffixPressed,
-                  icon: Icon(suffix),
-                )
-              : null,
-          border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(12)),
-          enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(12)),
-        ),
+    return TextFormField(
+      controller: controller,
+      keyboardType: type,
+      obscureText: isPassword,
+      enabled: isClickable,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChange,
+      onTap: onTap,
+      validator: validate,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: label,
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed,
+                icon: Icon(suffix),
+              )
+            : null,
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(12)),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
@@ -153,6 +152,7 @@ class MyDivider extends StatelessWidget {
 
 void showToast({
   required String text,
+  required Color color,
 }) =>
     Fluttertoast.showToast(
       msg: text,
@@ -161,4 +161,5 @@ void showToast({
       timeInSecForIosWeb: 5,
       textColor: Colors.white,
       fontSize: 16.0,
+      backgroundColor: color,
     );
