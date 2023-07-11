@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:route_e_commerce/features/home/presentation/cubit/home_cubit.dart';
+import 'package:route_e_commerce/features/login/presentation/pages/login.dart';
+import 'package:route_e_commerce/features/sign_up/data/datasources/sign_up_remote_data_source.dart';
+import 'package:route_e_commerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 
-import '../../core/utils/components.dart';
 import '../../features/home/data/datasources/home_remote_dto.dart';
 import '../../features/home/presentation/pages/home.dart';
+import '../../features/sign_up/presentation/pages/sign_up.dart';
 
 class Routes {
+  static const String login = "login";
+  static const String signUp = "signUp";
   static const String home = "homeScreen";
 }
 
 class AppRoutes {
   static Route onGenerate(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case Routes.login:
+        return MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        );
+      case Routes.signUp:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                SignUpCubit(signUpDataSources: SignUpRemoteDataSource()),
+            child: const SignUpScreen(),
+          ),
+        );
       case Routes.home:
         return MaterialPageRoute(
-          builder: (context) =>  BlocProvider(
+          builder: (context) => BlocProvider(
             create: (context) => HomeCubit(homeDataSources: HomeRemoteDto()),
             child: const HomeScreen(),
           ),
@@ -26,3 +43,8 @@ class AppRoutes {
     }
   }
 }
+Widget unDefineRoute() => const Scaffold(
+  body: Center(
+    child: Text("UnDefine Route"),
+  ),
+);
