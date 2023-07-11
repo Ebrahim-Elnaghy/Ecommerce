@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: Routes.signUp,
+          initialRoute: '/',
           theme: DarkTheme.darkTheme,
           onGenerateRoute: (settings) => AppRoutes.onGenerate(settings),
         );

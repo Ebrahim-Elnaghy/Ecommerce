@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:route_e_commerce/features/home/presentation/cubit/home_cubit.dart';
+import 'package:route_e_commerce/features/login/data/datasources/login_data_sources.dart';
+import 'package:route_e_commerce/features/login/presentation/cubit/login_cubit.dart';
 import 'package:route_e_commerce/features/login/presentation/pages/login.dart';
 import 'package:route_e_commerce/features/sign_up/data/datasources/sign_up_remote_data_source.dart';
 import 'package:route_e_commerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:route_e_commerce/features/splash/presentation/cubit/splash_cubit.dart';
+import 'package:route_e_commerce/features/splash/presentation/pages/splash.dart';
 
 import '../../features/home/data/datasources/home_remote_dto.dart';
 import '../../features/home/presentation/pages/home.dart';
 import '../../features/sign_up/presentation/pages/sign_up.dart';
 
 class Routes {
+  static const String splash = "/";
   static const String login = "login";
   static const String signUp = "signUp";
   static const String home = "homeScreen";
@@ -18,9 +23,20 @@ class Routes {
 class AppRoutes {
   static Route onGenerate(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case Routes.splash:
+        return MaterialPageRoute(
+          builder: (context) =>  BlocProvider(
+            create: (context) => SplashCubit(),
+            child: const SplashScreen(),
+          ),
+        );
+
       case Routes.login:
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) =>  BlocProvider(
+            create: (context) => LoginCubit(sources: LoginRemoteDto()),
+            child: const LoginScreen(),
+          ),
         );
       case Routes.signUp:
         return MaterialPageRoute(
@@ -43,8 +59,9 @@ class AppRoutes {
     }
   }
 }
+
 Widget unDefineRoute() => const Scaffold(
-  body: Center(
-    child: Text("UnDefine Route"),
-  ),
-);
+      body: Center(
+        child: Text("UnDefine Route"),
+      ),
+    );
