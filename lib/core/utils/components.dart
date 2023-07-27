@@ -152,14 +152,12 @@ class MyDivider extends StatelessWidget {
 
 void showToast({
   required String text,
-  required Color color,
 }) =>
     Fluttertoast.showToast(
       msg: text,
-      toastLength: Toast.LENGTH_LONG,
+      toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 5,
+      timeInSecForIosWeb: 1,
       textColor: Colors.white,
       fontSize: 16.0,
-      backgroundColor: color,
     );

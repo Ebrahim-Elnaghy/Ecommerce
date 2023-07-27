@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:route_e_commerce/core/error/failures.dart';
-import 'package:route_e_commerce/features/sign_up/data/datasources/sign_sup_data_sources.dart';
-import 'package:route_e_commerce/features/sign_up/domain/entities/sign_up_entity.dart';
-import 'package:route_e_commerce/features/sign_up/domain/entities/user_data.dart';
 
 import '../../../../core/api/end_points.dart';
+import '../../../../core/error/failures.dart';
 import '../../../../core/utils/constants.dart';
+import '../../domain/entities/sign_up_entity.dart';
+import '../../domain/entities/user_data.dart';
 import '../models/sign_up_model.dart';
+import 'sign_sup_data_sources.dart';
 
 class SignUpRemoteDataSource implements SignUpDataSources {
   Dio dio = Dio();

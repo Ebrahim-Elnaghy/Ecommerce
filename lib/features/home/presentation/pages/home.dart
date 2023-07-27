@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../cubit/home_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,9 +49,19 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   BottomNavigationBarItem(
-                    icon: Image.asset(
-                      'assets/icons/unselect_fev_icon.png',
-                    ),
+                    icon: HomeCubit.get(context).favorites.isEmpty
+                        ? Image.asset(
+                            'assets/icons/unselect_fev_icon.png',
+                          )
+                        : Badge(
+                            label: Text(HomeCubit.get(context)
+                                .favorites
+                                .length
+                                .toString()),
+                            child: Image.asset(
+                              'assets/icons/unselect_fev_icon.png',
+                            ),
+                          ),
                     label: '',
                     activeIcon: Image.asset(
                       'assets/icons/select_fev_icon.png',

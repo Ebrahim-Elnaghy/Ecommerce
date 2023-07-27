@@ -17,6 +17,9 @@ TextStyle poppins14W300({required Color color}) => GoogleFonts.poppins(
 TextStyle poppins14W400({required Color color}) => GoogleFonts.poppins(
     fontSize: 14.sp, fontWeight: FontWeight.w400, color: color);
 
+TextStyle poppins14W500({required Color color}) => GoogleFonts.poppins(
+    fontSize: 14.sp, fontWeight: FontWeight.w500, color: color);
+
 TextStyle poppins12W400({required Color color}) => GoogleFonts.poppins(
     fontSize: 12.sp, fontWeight: FontWeight.w400, color: color);
 

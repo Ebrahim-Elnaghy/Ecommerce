@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:route_e_commerce/features/home/presentation/cubit/home_cubit.dart';
-import 'package:route_e_commerce/features/login/data/datasources/login_data_sources.dart';
-import 'package:route_e_commerce/features/login/presentation/cubit/login_cubit.dart';
-import 'package:route_e_commerce/features/login/presentation/pages/login.dart';
-import 'package:route_e_commerce/features/sign_up/data/datasources/sign_up_remote_data_source.dart';
-import 'package:route_e_commerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
-import 'package:route_e_commerce/features/splash/presentation/cubit/splash_cubit.dart';
-import 'package:route_e_commerce/features/splash/presentation/pages/splash.dart';
 
 import '../../features/home/data/datasources/home_remote_dto.dart';
+import '../../features/home/presentation/cubit/home_cubit.dart';
 import '../../features/home/presentation/pages/home.dart';
+import '../../features/login/data/datasources/login_data_sources.dart';
+import '../../features/login/presentation/cubit/login_cubit.dart';
+import '../../features/login/presentation/pages/login.dart';
+import '../../features/sign_up/data/datasources/sign_up_remote_data_source.dart';
+import '../../features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import '../../features/sign_up/presentation/pages/sign_up.dart';
+import '../../features/splash/presentation/cubit/splash_cubit.dart';
+import '../../features/splash/presentation/pages/splash.dart';
 
 class Routes {
   static const String splash = "/";
@@ -25,7 +25,7 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.splash:
         return MaterialPageRoute(
-          builder: (context) =>  BlocProvider(
+          builder: (context) => BlocProvider(
             create: (context) => SplashCubit(),
             child: const SplashScreen(),
           ),
@@ -33,7 +33,7 @@ class AppRoutes {
 
       case Routes.login:
         return MaterialPageRoute(
-          builder: (context) =>  BlocProvider(
+          builder: (context) => BlocProvider(
             create: (context) => LoginCubit(sources: LoginRemoteDto()),
             child: const LoginScreen(),
           ),
@@ -49,7 +49,11 @@ class AppRoutes {
       case Routes.home:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => HomeCubit(homeDataSources: HomeRemoteDto()),
+            create: (context) => HomeCubit(homeDataSources: HomeRemoteDto())
+              ..getCategories()
+              ..getBrands()
+              ..getElectronicsProducts()
+              ..getMenFashionProducts()..getWomenFashionProducts(),
             child: const HomeScreen(),
           ),
         );

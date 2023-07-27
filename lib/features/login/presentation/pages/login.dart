@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/config/routes/app_route.dart';
+import '../../../../config/routes/app_route.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/cache_helper.dart';
@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is LoginErrorState) {
-          showToast(text: state.failure.message, color: Colors.red);
+          showToast(text: state.failure.message);
         } else if (state is LoginSuccessState) {
           CacheHelper.saveData(key: 'userToken', value: state.loginEntity.token)
               .then((value) {

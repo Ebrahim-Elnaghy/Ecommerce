@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:route_e_commerce/core/utils/app_colors.dart';
-import 'package:route_e_commerce/core/utils/components.dart';
-import 'package:route_e_commerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/components.dart';
+import '../cubit/sign_up_cubit.dart';
 
 import '../../../../config/routes/app_route.dart';
 import '../../../../core/utils/app_images.dart';
@@ -17,9 +17,9 @@ class SignUpScreen extends StatelessWidget {
     return BlocConsumer<SignUpCubit, SignUpStates>(
       listener: (context, state) {
         if (state is SignUpErrorState) {
-          showToast(text: state.failure.message, color: Colors.red);
+          showToast(text: state.failure.message);
         } else if (state is SignUpSuccessState) {
-          showToast(text: 'Account created successfully', color: Colors.green);
+          showToast(text: 'Account created successfully');
           Navigator.pushReplacementNamed(context, Routes.login);
         }
       },

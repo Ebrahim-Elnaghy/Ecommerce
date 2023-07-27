@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:route_e_commerce/core/utils/cache_helper.dart';
 
 import '../../../../config/routes/app_route.dart';
 import '../../../../core/utils/app_images.dart';
+import '../../../../core/utils/cache_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
